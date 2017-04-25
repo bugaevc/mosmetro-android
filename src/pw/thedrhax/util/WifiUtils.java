@@ -89,8 +89,9 @@ public class WifiUtils {
         try {
             for (WifiConfiguration network : manager.getConfiguredNetworks()) {
                 if (clear(network.SSID).equals(SSID)) {
+                    manager.disconnect();
                     manager.enableNetwork(network.networkId, true);
-                    manager.reassociate();
+                    manager.reconnect();
                 }
             }
         } catch (NullPointerException ignored) {}
